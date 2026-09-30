@@ -432,12 +432,10 @@ if page == "🏠 Dashboard":
                 <div class="achievement-icon">🔥</div>
 
                 <div class="achievement-title">
-                    10 Day Streak
-                </div>
+                    10 Day Streak </div>
 
                 <div class="achievement-sub">
-                    Learned for 10 consecutive days
-                </div>
+                    Learned for 10 consecutive days</div>
             </div>
             """,
             unsafe_allow_html=True
@@ -451,12 +449,10 @@ if page == "🏠 Dashboard":
                 <div class="achievement-icon">🐍</div>
 
                 <div class="achievement-title">
-                    Python Beginner
-                </div>
+                    Python Beginner</div>
 
                 <div class="achievement-sub">
-                    Completed Python fundamentals
-                </div>
+                    Completed Python fundamentals</div>
             </div>
             """,
             unsafe_allow_html=True
@@ -470,12 +466,10 @@ if page == "🏠 Dashboard":
                 <div class="achievement-icon">🏆</div>
 
                 <div class="achievement-title">
-                    First Certificate
-                </div>
+                    First Certificate</div>
 
                 <div class="achievement-sub">
-                    Earned your first certificate
-                </div>
+                    Earned your first certificate</div>
             </div>
             """,
             unsafe_allow_html=True
@@ -496,16 +490,13 @@ elif page == "👤 My Profile":
             <div class="profile-card">
 
                 <div class="profile-avatar">
-                    B
-                </div>
+                    B</div>
 
                 <div class="profile-name">
-                    Bharadhwaj
-                </div>
+                    Bharadhwaj</div>
 
                 <div class="profile-role">
-                    NERCHUKO Student
-                </div>
+                    NERCHUKO Student</div>
 
             </div>
             """,
@@ -734,16 +725,13 @@ elif page == "🏆 Achievements":
                 <div class="achievement">
 
                     <div class="achievement-icon">
-                        {achievement[0]}
-                    </div>
+                        {achievement[0]}</div>
 
                     <div class="achievement-title">
-                        {achievement[1]}
-                    </div>
+                        {achievement[1]}</div>
 
                     <div class="achievement-sub">
-                        {achievement[2]}
-                    </div>
+                        {achievement[2]}</div>
 
                 </div>
                 """,
@@ -757,7 +745,7 @@ st.markdown(
     <div class="footer">
         🎓 <strong>NERCHUKO</strong> — Learn. Build. Grow.<br>
         Your personalized online learning platform.
-    </div>
+ </div>
     """,
     unsafe_allow_html=True
 )
