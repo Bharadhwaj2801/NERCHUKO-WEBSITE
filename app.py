@@ -729,31 +729,7 @@ elif page == "🏆 Achievements":
             st.caption("Completed your weekly goal")
             st.success("ACHIEVED")
 
-    for index, achievement in enumerate(achievement):
-
-        col = [c1, c2, c3][index % 3]
-
-        with col:
-
-            st.markdown(
-                f"""
-                <div class="achievement">
-
-                    <div class="achievement-icon">
-                        {achievement[0]}</div>
-
-                    <div class="achievement-title">
-                        {achievement[1]}</div>
-
-                    <div class="achievement-sub">
-                        {achievement[2]}</div>
-
-                </div>
-                """,
-                unsafe_allow_html=True
-            )
-
-            st.write("")
+   
 
 st.markdown(
     """
