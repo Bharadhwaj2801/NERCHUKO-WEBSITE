@@ -139,79 +139,52 @@ section[data-testid="stSidebar"] * {
 }
 
 
-elif page == "👤 My Profile":
+.profile-card {
+    background-color: white;
+    border-radius: 18px;
+    padding: 30px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 5px 18px rgba(15, 23, 42, 0.06);
+}
 
-    st.title("👤 My Profile")
-    st.write("Manage your NERCHUKO account information.")
+.profile-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #2563eb, #7c3aed);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 32px;
+    font-weight: 800;
+    margin-bottom: 15px;
+}
 
-    st.divider()
+.profile-name {
+    font-size: 24px;
+    font-weight: 800;
+    color: #111827;
+}
 
-    col1, col2 = st.columns([1, 2])
+.profile-role {
+    color: #64748b;
+    font-size: 14px;
+}
 
-    # -----------------------------------------------------
-    # PROFILE CARD
-    # -----------------------------------------------------
 
-    with col1:
+.footer {
+    background-color: white;
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    color: #64748b;
+    font-size: 13px;
+    margin-top: 40px;
+}
 
-        with st.container(border=True):
-
-            st.markdown("## 👤")
-
-            st.subheader("Bharadhwaj")
-
-            st.caption("NERCHUKO Student")
-
-            st.divider()
-
-            st.metric(
-                "Overall Progress",
-                "58%"
-            )
-
-            st.metric(
-                "Courses Enrolled",
-                "4"
-            )
-
-            st.metric(
-                "Certificates",
-                "2"
-            )
-
-   
-    with col2:
-
-        st.subheader("Personal Information")
-
-        name = st.text_input(
-            "Full Name",
-            value="Bharadhwaj"
-        )
-
-        email = st.text_input(
-            "Email",
-            value="student@example.com"
-        )
-
-        contact = st.text_input(
-            "Contact",
-            value="+91 9876543210"
-        )
-
-        course = st.text_input(
-            "Ongoing Course",
-            value="Python Programming"
-        )
-
-        if st.button(
-            "💾 Save Changes",
-            use_container_width=True
-        ):
-
-            st.success(
-                "✅ Profile updated successfully!"
-            )
+</style>
+""", unsafe_allow_html=True)
 
 
 
