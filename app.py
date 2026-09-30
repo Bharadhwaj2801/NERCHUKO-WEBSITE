@@ -729,7 +729,7 @@ elif page == "🏆 Achievements":
             st.caption("Completed your weekly goal")
             st.success("ACHIEVED")
 
-    for index, achievement in enumerate(Achievements):
+    for index, achievement in enumerate(achievement):
 
         col = [c1, c2, c3][index % 3]
 
