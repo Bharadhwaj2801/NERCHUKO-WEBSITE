@@ -674,45 +674,60 @@ elif page == "📊 Analytics":
         use_container_width=True
     )
 
-
 elif page == "🏆 Achievements":
 
     st.title("🏆 Achievements")
+    st.write("Your learning milestones and accomplishments")
+
+    st.divider()
 
     c1, c2, c3 = st.columns(3)
 
-    achievements = [
-        (
-            "🔥",
-            "10 Day Streak",
-            "Learned for 10 consecutive days"
-        ),
-        (
-            "🐍",
-            "Python Beginner",
-            "Completed Python fundamentals"
-        ),
-        (
-            "📊",
-            "Data Explorer",
-            "Completed Data Analysis basics"
-        ),
-        (
-            "🏆",
-            "First Certificate",
-            "Earned your first certificate"
-        ),
-        (
-            "⚡",
-            "Fast Learner",
-            "Completed 5 lessons in one day"
-        ),
-        (
-            "🎯",
-            "Goal Setter",
-            "Completed your weekly goal"
-        )
-    ]
+    with c1:
+        with st.container(border=True):
+            st.markdown("## 🔥")
+            st.subheader("10 Day Streak")
+            st.caption("Learned for 10 consecutive days")
+            st.success("ACHIEVED")
+
+    with c2:
+        with st.container(border=True):
+            st.markdown("## 🐍")
+            st.subheader("Python Beginner")
+            st.caption("Completed Python fundamentals")
+            st.success("ACHIEVED")
+
+    with c3:
+        with st.container(border=True):
+            st.markdown("## 📊")
+            st.subheader("Data Explorer")
+            st.caption("Completed Data Analysis basics")
+            st.success("ACHIEVED")
+
+    st.write("")
+
+    c4, c5, c6 = st.columns(3)
+
+    with c4:
+        with st.container(border=True):
+            st.markdown("## 🏆")
+            st.subheader("First Certificate")
+            st.caption("Earned your first certificate")
+            st.success("ACHIEVED")
+
+    with c5:
+        with st.container(border=True):
+            st.markdown("## ⚡")
+            st.subheader("Fast Learner")
+            st.caption("Completed 5 lessons in one day")
+            st.success("ACHIEVED")
+
+    with c6:
+        with st.container(border=True):
+            st.markdown("## 🎯")
+            st.subheader("Goal Setter")
+            st.caption("Completed your weekly goal")
+            st.success("ACHIEVED")
 
     for index, achievement in enumerate(achievements):
 
