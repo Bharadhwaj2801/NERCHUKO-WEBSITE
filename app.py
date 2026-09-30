@@ -1,220 +1,209 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
-import plotly.graph_objects as go
 
 
 st.set_page_config(
-    page_title="NERCHUKO | Learning Platform",
+    page_title="NERCHUKO | Online Learning",
     page_icon="🎓",
     layout="wide",
     initial_sidebar_state="expanded"
 )
 
+
 st.markdown("""
 <style>
 
-    /* Main background */
-    .stApp {
-        background-color: #f5f7fb;
-    }
+body {
+    background-color: #f5f7fb;
+}
 
-    /* Remove default top padding */
-    .block-container {
-        padding-top: 2rem;
-        padding-bottom: 3rem;
-    }
+.stApp {
+    background-color: #f5f7fb;
+}
 
-    /* Sidebar */
-    section[data-testid="stSidebar"] {
-        background: linear-gradient(180deg, #111827 0%, #1e293b 100%);
-    }
+.block-container {
+    padding-top: 2rem;
+    padding-bottom: 3rem;
+}
 
-    section[data-testid="stSidebar"] * {
-        color: white !important;
-    }
 
-    /* Brand */
-    .brand {
-        font-size: 32px;
-        font-weight: 800;
-        color: white;
-        letter-spacing: 1px;
-        margin-bottom: 5px;
-    }
 
-    .brand-sub {
-        color: #94a3b8;
-        font-size: 13px;
-        margin-bottom: 30px;
-    }
+section[data-testid="stSidebar"] {
+    background: linear-gradient(180deg, #111827 0%, #1e293b 100%);
+}
 
-    /* Main heading */
-    .welcome {
-        font-size: 34px;
-        font-weight: 800;
-        color: #111827;
-        margin-bottom: 5px;
-    }
+section[data-testid="stSidebar"] * {
+    color: white !important;
+}
 
-    .welcome-sub {
-        color: #64748b;
-        font-size: 16px;
-        margin-bottom: 25px;
-    }
+.brand {
+    font-size: 31px;
+    font-weight: 800;
+    color: white;
+    letter-spacing: 1px;
+}
 
-    /* Cards */
-    .card {
-        background: white;
-        border-radius: 16px;
-        padding: 22px;
-        box-shadow: 0 4px 18px rgba(15, 23, 42, 0.06);
-        border: 1px solid #e8edf5;
-        margin-bottom: 18px;
-    }
+.brand-sub {
+    color: #94a3b8 !important;
+    font-size: 13px;
+    margin-top: 5px;
+    margin-bottom: 25px;
+}
 
-    .card-title {
-        font-size: 18px;
-        font-weight: 700;
-        color: #111827;
-        margin-bottom: 5px;
-    }
 
-    .card-subtitle {
-        font-size: 13px;
-        color: #64748b;
-    }
 
-    /* Course hero */
-    .course-hero {
-        background: linear-gradient(135deg, #2563eb, #4f46e5);
-        border-radius: 18px;
-        padding: 28px;
-        color: white;
-        margin-bottom: 20px;
-        box-shadow: 0 8px 25px rgba(37, 99, 235, 0.22);
-    }
+.welcome {
+    font-size: 35px;
+    font-weight: 800;
+    color: #111827;
+}
 
-    .course-hero h2 {
-        color: white;
-        font-size: 25px;
-        margin-bottom: 8px;
-    }
+.welcome-sub {
+    font-size: 16px;
+    color: #64748b;
+    margin-top: 5px;
+    margin-bottom: 25px;
+}
 
-    .course-hero p {
-        color: #dbeafe;
-        margin-bottom: 20px;
-    }
+.section-title {
+    font-size: 23px;
+    font-weight: 800;
+    color: #111827;
+    margin-top: 30px;
+    margin-bottom: 18px;
+}
 
-    /* Skill pills */
-    .skill {
-        display: inline-block;
-        background: #eff6ff;
-        color: #2563eb;
-        padding: 8px 14px;
-        border-radius: 20px;
-        margin: 4px;
-        font-size: 13px;
-        font-weight: 600;
-        border: 1px solid #dbeafe;
-    }
 
-    /* Achievement */
-    .achievement {
-        text-align: center;
-        background: white;
-        padding: 20px;
-        border-radius: 15px;
-        border: 1px solid #e8edf5;
-        box-shadow: 0 4px 15px rgba(15,23,42,0.05);
-    }
+.course-hero {
+    background: linear-gradient(135deg, #2563eb, #4f46e5);
+    border-radius: 18px;
+    padding: 30px;
+    color: white;
+    box-shadow: 0 10px 30px rgba(37, 99, 235, 0.25);
+    margin-bottom: 20px;
+}
 
-    .achievement-icon {
-        font-size: 32px;
-    }
+.course-hero h2 {
+    color: white;
+    font-size: 27px;
+    margin: 0 0 10px 0;
+}
 
-    .achievement-title {
-        font-weight: 700;
-        color: #111827;
-        margin-top: 8px;
-    }
+.course-hero p {
+    color: #e0e7ff;
+    font-size: 15px;
+    margin: 0;
+}
 
-    .achievement-sub {
-        font-size: 12px;
-        color: #64748b;
-    }
 
-    /* Profile */
-    .profile-card {
-        background: white;
-        border-radius: 16px;
-        padding: 25px;
-        border: 1px solid #e8edf5;
-        box-shadow: 0 4px 18px rgba(15,23,42,0.06);
-    }
+.skill {
+    display: inline-block;
+    background-color: #eff6ff;
+    color: #2563eb;
+    padding: 8px 14px;
+    border-radius: 20px;
+    margin: 4px;
+    font-size: 13px;
+    font-weight: 600;
+    border: 1px solid #dbeafe;
+}
 
-    .profile-avatar {
-        width: 75px;
-        height: 75px;
-        border-radius: 50%;
-        background: linear-gradient(135deg, #2563eb, #7c3aed);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-        font-size: 30px;
-        font-weight: bold;
-        margin-bottom: 15px;
-    }
 
-    .profile-name {
-        font-size: 23px;
-        font-weight: 800;
-        color: #111827;
-    }
 
-    .profile-role {
-        color: #64748b;
-        font-size: 14px;
-    }
+.achievement {
+    background-color: white;
+    border-radius: 16px;
+    padding: 25px;
+    text-align: center;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 5px 18px rgba(15, 23, 42, 0.06);
+    min-height: 150px;
+}
 
-    /* Section headings */
-    .section-title {
-        font-size: 22px;
-        font-weight: 800;
-        color: #111827;
-        margin-top: 25px;
-        margin-bottom: 15px;
-    }
+.achievement-icon {
+    font-size: 34px;
+    margin-bottom: 10px;
+}
 
-    /* Footer */
-    .footer {
-        text-align: center;
-        color: #94a3b8;
-        font-size: 13px;
-        padding: 30px;
-    }
+.achievement-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 7px;
+}
+
+.achievement-sub {
+    font-size: 13px;
+    color: #64748b;
+}
+
+
+.profile-card {
+    background-color: white;
+    border-radius: 18px;
+    padding: 30px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 5px 18px rgba(15, 23, 42, 0.06);
+}
+
+.profile-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #2563eb, #7c3aed);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 32px;
+    font-weight: 800;
+    margin-bottom: 15px;
+}
+
+.profile-name {
+    font-size: 24px;
+    font-weight: 800;
+    color: #111827;
+}
+
+.profile-role {
+    color: #64748b;
+    font-size: 14px;
+}
+
+
+.footer {
+    background-color: white;
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    color: #64748b;
+    font-size: 13px;
+    margin-top: 40px;
+}
 
 </style>
 """, unsafe_allow_html=True)
 
 
+
 with st.sidebar:
 
     st.markdown(
-        '<div class="brand">🎓 NERCHUKO</div>',
-        unsafe_allow_html=True
-    )
-
-    st.markdown(
-        '<div class="brand-sub">Learn. Build. Grow.</div>',
+        """
+        <div class="brand">🎓 NERCHUKO</div>
+        <div class="brand-sub">Learn. Build. Grow.</div>
+        """,
         unsafe_allow_html=True
     )
 
     st.divider()
 
+    st.markdown("### MENU")
+
     page = st.radio(
-        "MENU",
+        "",
         [
             "🏠 Dashboard",
             "👤 My Profile",
@@ -237,19 +226,22 @@ with st.sidebar:
     st.caption("Keep learning every day! 🔥")
 
 
+
 if page == "🏠 Dashboard":
 
     st.markdown(
-        '<div class="welcome">Welcome back, Bharadhwaj! 👋</div>',
+        """
+        <div class="welcome">
+            Welcome back, Bharadhwaj! 👋
+        </div>
+
+        <div class="welcome-sub">
+            Continue your learning journey and achieve your goals.
+        </div>
+        """,
         unsafe_allow_html=True
     )
 
-    st.markdown(
-        '<div class="welcome-sub">'
-        'Continue your learning journey and achieve your goals.'
-        '</div>',
-        unsafe_allow_html=True
-    )
 
     col1, col2, col3, col4 = st.columns(4)
 
@@ -287,16 +279,18 @@ if page == "🏠 Dashboard":
         unsafe_allow_html=True
     )
 
-    st.markdown("""
-    <div class="course-hero">
-
-        <h2>🐍 Python Programming</h2>
-
-        <p>Master Python from fundamentals to advanced programming,
-        data analysis and real-world projects.</p>
-
-    </div>
-    """, unsafe_allow_html=True)
+    st.markdown(
+        """
+        <div class="course-hero">
+            <h2>🐍 Python Programming</h2>
+            <p>
+                Master Python from fundamentals to advanced programming,
+                data analysis and real-world projects.
+            </p>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
     col1, col2, col3 = st.columns([2, 1, 1])
 
@@ -330,6 +324,7 @@ if page == "🏠 Dashboard":
             "Opening Python Programming course..."
         )
 
+  
 
     st.markdown(
         '<div class="section-title">Learning Overview</div>',
@@ -337,6 +332,7 @@ if page == "🏠 Dashboard":
     )
 
     col1, col2 = st.columns([1.5, 1])
+
 
     with col1:
 
@@ -376,9 +372,6 @@ if page == "🏠 Dashboard":
             xaxis_title="",
             plot_bgcolor="white",
             paper_bgcolor="white",
-            font=dict(
-                color="#334155"
-            ),
             margin=dict(
                 l=20,
                 r=20,
@@ -392,15 +385,16 @@ if page == "🏠 Dashboard":
             use_container_width=True
         )
 
+    # ---------------- SKILLS ----------------
+
     with col2:
 
         st.markdown(
-            '<div class="card">',
-            unsafe_allow_html=True
-        )
-
-        st.markdown(
-            '<div class="card-title">🧠 Skills Learnt</div>',
+            """
+            <div class="section-title">
+                🧠 Skills Learnt
+            </div>
+            """,
             unsafe_allow_html=True
         )
 
@@ -422,57 +416,71 @@ if page == "🏠 Dashboard":
                 unsafe_allow_html=True
             )
 
-        st.markdown("</div>", unsafe_allow_html=True)
 
- st.markdown(
-    '<div class="section-title">Recent Achievements</div>',
-    unsafe_allow_html=True
-)
-
-c1, c2, c3 = st.columns(3)
-
-with c1:
     st.markdown(
-        """
-        <div class="achievement">
-            <div class="achievement-icon">🔥</div>
-            <div class="achievement-title">10 Day Streak</div>
-            <div class="achievement-sub">
-                Learned for 10 consecutive days
-            </div>
-        </div>
-        """,
+        '<div class="section-title">Recent Achievements</div>',
         unsafe_allow_html=True
     )
 
-with c2:
-    st.markdown(
-        """
-        <div class="achievement">
-            <div class="achievement-icon">🐍</div>
-            <div class="achievement-title">Python Beginner</div>
-            <div class="achievement-sub">
-                Completed Python fundamentals
-            </div>
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
+    c1, c2, c3 = st.columns(3)
 
-with c3:
-    st.markdown(
-        """
-        <div class="achievement">
-            <div class="achievement-icon">🏆</div>
-            <div class="achievement-title">First Certificate</div>
-            <div class="achievement-sub">
-                Earned your first certificate
+    with c1:
+
+        st.markdown(
+            """
+            <div class="achievement">
+                <div class="achievement-icon">🔥</div>
+
+                <div class="achievement-title">
+                    10 Day Streak
+                </div>
+
+                <div class="achievement-sub">
+                    Learned for 10 consecutive days
+                </div>
             </div>
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
-    
+            """,
+            unsafe_allow_html=True
+        )
+
+    with c2:
+
+        st.markdown(
+            """
+            <div class="achievement">
+                <div class="achievement-icon">🐍</div>
+
+                <div class="achievement-title">
+                    Python Beginner
+                </div>
+
+                <div class="achievement-sub">
+                    Completed Python fundamentals
+                </div>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+
+    with c3:
+
+        st.markdown(
+            """
+            <div class="achievement">
+                <div class="achievement-icon">🏆</div>
+
+                <div class="achievement-title">
+                    First Certificate
+                </div>
+
+                <div class="achievement-sub">
+                    Earned your first certificate
+                </div>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+
 
 
 elif page == "👤 My Profile":
@@ -483,62 +491,60 @@ elif page == "👤 My Profile":
 
     with col1:
 
-        st.markdown("""
-        <div class="profile-card">
-
-            <div class="profile-avatar">
-                B
-            </div>
-
-            <div class="profile-name">
-                Bharadhwaj
-            </div>
-
-            <div class="profile-role">
-                NERCHUKO Student
-            </div>
-
-        </div>
-        """, unsafe_allow_html=True)
-
-    with col2:
-
         st.markdown(
-            '<div class="card">',
+            """
+            <div class="profile-card">
+
+                <div class="profile-avatar">
+                    B
+                </div>
+
+                <div class="profile-name">
+                    Bharadhwaj
+                </div>
+
+                <div class="profile-role">
+                    NERCHUKO Student
+                </div>
+
+            </div>
+            """,
             unsafe_allow_html=True
         )
+
+    with col2:
 
         st.subheader("Personal Information")
 
         st.text_input(
             "Full Name",
-            "Bharadhwaj"
+            value="Bharadhwaj"
         )
 
         st.text_input(
             "Email",
-            "student@example.com"
+            value="student@example.com"
         )
 
         st.text_input(
             "Contact",
-            "+91 9876543210"
+            value="+91 9876543210"
         )
 
         st.text_input(
             "Ongoing Course",
-            "Python Programming"
+            value="Python Programming"
         )
 
         if st.button(
             "💾 Save Changes",
             use_container_width=True
         ):
+
             st.success(
                 "Profile updated successfully!"
             )
 
-        st.markdown("</div>", unsafe_allow_html=True)
 
 elif page == "📚 My Courses":
 
@@ -554,7 +560,16 @@ elif page == "📚 My Courses":
     for icon, name, progress, lessons in courses:
 
         st.markdown(
-            '<div class="card">',
+            """
+            <div style="
+                background:white;
+                padding:22px;
+                border-radius:16px;
+                margin-bottom:15px;
+                border:1px solid #e5e7eb;
+                box-shadow:0 5px 15px rgba(15,23,42,0.05);
+            ">
+            """,
             unsafe_allow_html=True
         )
 
@@ -597,7 +612,6 @@ elif page == "📊 Analytics":
 
     st.title("📊 Learning Analytics")
 
-    # Weekly hours
 
     weekly_data = pd.DataFrame({
         "Day": [
@@ -640,7 +654,6 @@ elif page == "📊 Analytics":
         use_container_width=True
     )
 
-    # Course distribution
 
     course_data = pd.DataFrame({
         "Course": [
@@ -678,12 +691,36 @@ elif page == "🏆 Achievements":
     c1, c2, c3 = st.columns(3)
 
     achievements = [
-        ("🔥", "10 Day Streak", "Learned for 10 consecutive days"),
-        ("🐍", "Python Beginner", "Completed Python fundamentals"),
-        ("📊", "Data Explorer", "Completed Data Analysis basics"),
-        ("🏆", "First Certificate", "Earned your first certificate"),
-        ("⚡", "Fast Learner", "Completed 5 lessons in one day"),
-        ("🎯", "Goal Setter", "Completed your weekly goal")
+        (
+            "🔥",
+            "10 Day Streak",
+            "Learned for 10 consecutive days"
+        ),
+        (
+            "🐍",
+            "Python Beginner",
+            "Completed Python fundamentals"
+        ),
+        (
+            "📊",
+            "Data Explorer",
+            "Completed Data Analysis basics"
+        ),
+        (
+            "🏆",
+            "First Certificate",
+            "Earned your first certificate"
+        ),
+        (
+            "⚡",
+            "Fast Learner",
+            "Completed 5 lessons in one day"
+        ),
+        (
+            "🎯",
+            "Goal Setter",
+            "Completed your weekly goal"
+        )
     ]
 
     for index, achievement in enumerate(achievements):
@@ -692,32 +729,35 @@ elif page == "🏆 Achievements":
 
         with col:
 
-            st.markdown(f"""
-            <div class="achievement">
+            st.markdown(
+                f"""
+                <div class="achievement">
 
-                <div class="achievement-icon">
-                    {achievement[0]}
+                    <div class="achievement-icon">
+                        {achievement[0]}
+                    </div>
+
+                    <div class="achievement-title">
+                        {achievement[1]}
+                    </div>
+
+                    <div class="achievement-sub">
+                        {achievement[2]}
+                    </div>
+
                 </div>
+                """,
+                unsafe_allow_html=True
+            )
 
-                <div class="achievement-title">
-                    {achievement[1]}
-                </div>
+            st.write("")
 
-                <div class="achievement-sub">
-                    {achievement[2]}
-                </div>
-
-            </div>
-
-            <br>
-            """, unsafe_allow_html=True)
-
-
-st.markdown("""
-<div class="footer">
-
-    🎓 <b>NERCHUKO</b> — Learn. Build. Grow.<br>
-    Your personalized online learning platform.
-
-</div>
-""", unsafe_allow_html=True)
+st.markdown(
+    """
+    <div class="footer">
+        🎓 <strong>NERCHUKO</strong> — Learn. Build. Grow.<br>
+        Your personalized online learning platform.
+    </div>
+    """,
+    unsafe_allow_html=True
+)
