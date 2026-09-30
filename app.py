@@ -292,10 +292,8 @@ if page == "🏠 Dashboard":
 
         <h2>🐍 Python Programming</h2>
 
-        <p>
-        Master Python from fundamentals to advanced programming,
-        data analysis and real-world projects.
-        </p>
+        <p>Master Python from fundamentals to advanced programming,
+        data analysis and real-world projects.</p>
 
     </div>
     """, unsafe_allow_html=True)
@@ -426,67 +424,55 @@ if page == "🏠 Dashboard":
 
         st.markdown("</div>", unsafe_allow_html=True)
 
+ st.markdown(
+    '<div class="section-title">Recent Achievements</div>',
+    unsafe_allow_html=True
+)
 
+c1, c2, c3 = st.columns(3)
+
+with c1:
     st.markdown(
-        '<div class="section-title">Recent Achievements</div>',
-        unsafe_allow_html=True
-    )
-
-    c1, c2, c3 = st.columns(3)
-
-    with c1:
-
-        st.markdown("""
+        """
         <div class="achievement">
-
             <div class="achievement-icon">🔥</div>
-
-            <div class="achievement-title">
-                10 Day Streak
-            </div>
-
+            <div class="achievement-title">10 Day Streak</div>
             <div class="achievement-sub">
                 Learned for 10 consecutive days
             </div>
-
         </div>
-        """, unsafe_allow_html=True)
+        """,
+        unsafe_allow_html=True
+    )
 
-    with c2:
-
-        st.markdown("""
+with c2:
+    st.markdown(
+        """
         <div class="achievement">
-
             <div class="achievement-icon">🐍</div>
-
-            <div class="achievement-title">
-                Python Beginner
-            </div>
-
+            <div class="achievement-title">Python Beginner</div>
             <div class="achievement-sub">
                 Completed Python fundamentals
             </div>
-
         </div>
-        """, unsafe_allow_html=True)
+        """,
+        unsafe_allow_html=True
+    )
 
-    with c3:
-
-        st.markdown("""
+with c3:
+    st.markdown(
+        """
         <div class="achievement">
-
             <div class="achievement-icon">🏆</div>
-
-            <div class="achievement-title">
-                First Certificate
-            </div>
-
+            <div class="achievement-title">First Certificate</div>
             <div class="achievement-sub">
                 Earned your first certificate
             </div>
-
         </div>
-        """, unsafe_allow_html=True)
+        """,
+        unsafe_allow_html=True
+    )
+    
 
 
 elif page == "👤 My Profile":
